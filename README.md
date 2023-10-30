@@ -62,26 +62,26 @@ function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt
 
 
 ## Data saved in the output file 
-The output file '***.mat' consists of a struct named Nose, and this has the following information. 
+The output file '***.mat' consists of a struct named 'Nose' and this has the following information. 
+All is saved as [number of iteration * 2 * Nt, Ns] array. 
+For example, the solution (in the last iteration) of the temperature of the air subsystem during inhalation is: Nose.Ta(end-2*Nt:end-Nt,:)
+For exhalation: Nose.Ta(end-Nt:,:)
+
 ```matlab
-        Nose.Ta = array, temperature of air subsystem.
-        Nose.Tw = np.array(Nose['Tw'])
-        Nose.Tit = np.array(Nose['Tm'])
-        Nose.Tm = np.array(Nose['Tm'])
-        Nose.Tven = np.array(Nose['Tven'])
-        Nose.wa = np.array(Nose['wa'])
-        Nose.x_a = np.array(Nose['x_a'])
-        Nose.Tart_art = np.array(Nose['Tart_art'])
-        Nose.Tart = np.array(Nose['Tart'])
-        Nose.M_tot = np.array(Nose['M_tot'])
-        Nose.rho = np.array(Nose['rho'])
-        Nose.rho_vap = np.array(Nose['rho_vap'])
-        Nose.rho_dry = np.array(Nose['rho_dry'])
-        Nose.va = np.array(Nose['va'])
-        Nose.F_vap = np.array(Nose['F_vap'])
-        Nose.Fa = np.array(Nose['Fa'])
-        Nose.vart = np.array(Nose['vart'])
-        Nose.vven = np.array(Nose['vven'])
+        Nose.Ta = temperature of air subsystem.
+        Nose.Tw = temperature of mucus subsystem.
+        Nose.Tit = temperature of interstitial tissue subsystem.
+        Nose.Tven = temperature of vein subsystem.
+        Nose.wa = water mass fraction in the air subsystem.
+        Nose.x_a =  water mol fraction in the air subsystem.
+        Nose.Tart = temperature of artery subsystem.
+        Nose.M_tot = total mass of the air 
+        Nose.rho = density of the air 
+        Nose.rho_vap = density of the water vapour in the air
+        Nose.rho_dry = density of the dry air (density after excluding water vapour)
+        Nose.va = 
+        Nose.F_vap = flow rate of dry air
+        Nose.Fa = flow rate of air 
         Nose.R_aw = np.array(Nose['R_aw'])
         Nose.R_wm = np.array(Nose['R_wm'])
         Nose.R_art = np.array(Nose['R_art'])
@@ -93,11 +93,11 @@ The output file '***.mat' consists of a struct named Nose, and this has the foll
         Nose.h_w = np.array(Nose['h_w'])
         Nose.X_T = np.array(Nose['X_T'])
         Nose.X_mu = np.array(Nose['X_mu'])
-        Nose.Jw = np.array(Nose['Jw'])
-        Nose.Jq_a = np.array(Nose['Jq_a'])
-        Nose.Jq_w = np.array(Nose['Jq_w'])
-        Nose.Jq_art = np.array(Nose['Jq_art'])
-        Nose.Jq_ven = np.array(Nose['Jq_ven'])
+        Nose.Jw = water mass flux air-mucus subsystem 
+        Nose.Jq_a = heat flux of air-mucus subsystem
+        Nose.Jq_w = heat flux of mucus-interstitial tissue subsystem
+        Nose.Jq_art = heat flux of interstitial tissue - artery subsystem
+        Nose.Jq_ven = heat flux of interstitial tissue - vein subsystem
 ```
 
 

@@ -12,8 +12,8 @@ This repository is about a numerical calculation code package to study hydrodyna
 ```matlab
 k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
 % Important parameters are tempCond, noseGeom.
-% tempCond = the ambient air temperature [degree Celsius], for example, -30.
-% noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
+tempCond = the ambient air temperature [degree Celsius], for example, -30.
+noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
 ```
 
 4. Depending on the parameters for each animal, modify 'Parameters_animals.m' file.
@@ -54,9 +54,9 @@ k.fileName = ['saveName','.mat'];
 ## Details of the main code - 'Nose_t.m'
 ```matlab
 k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
-% Important parameters are tempCond, noseGeom.
-% tempCond = the ambient air temperature [degree Celsius], for example, -30.
-% noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
+Important parameters are tempCond, noseGeom.
+tempCond = the ambient air temperature [degree Celsius], for example, -30.
+noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
 ```
 
 ## Data saved in the output file 
@@ -107,20 +107,20 @@ Most of simulation settings can be changed from `k = Parameters_animals(.. , .. 
 
 ```matlab
 k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
-% Ns           = discretization number in space 
-% Ns_art       = discretization number in space for artery only
-% N_cycle      = maximum number of cycle
-% r_shunt      = a fraction to segmentize nose length. default = 0.5. This means you segmentize the nose length where the volume ratio between maxilloturbinate and total air pathway in a nose (maxilloturbinate+olfactory path) is 0.5.
-% d_mucus      = thickness of mucus lining [m]
-% factorRam    = multiplying factor for resistivity between air-mucus
-% factorRij    = multiplying factor for resistivity between two subsystems which does not relate to mass transport (i.e., interstitial tissue-artery, interstitial tissue-vein, mucus-interstitial tissue)
-% factorFric   = multiplying factor for the friction of the air in a turbinate 
-% heatTranCoef = constant heat transfer coefficient regardless of nose geometry 
-% factor_rit   = multiplying factor for volume ratio of interstitial tissue; factor_rit * interstitial tissue/(interstitial tissue + artery + vein)
-% factor_rtot  = multiplying factor total volume of (interstitial tissue + artery + vein)
-% rTide        = multiplying factor for tidal volume
-% rFreq        = multiplying factor for respiration frequency
-% velLim       = the minima of air velocity, which avoids Reynolds number diverging to infinity
+Ns           = discretization number in space 
+Ns_art       = discretization number in space for artery only
+N_cycle      = maximum number of cycle
+r_shunt      = a fraction to segmentize nose length. default = 0.5. This means you segmentize the nose length where the volume ratio between maxilloturbinate and total air pathway in a nose (maxilloturbinate+olfactory path) is 0.5.
+d_mucus      = thickness of mucus lining [m]
+factorRam    = multiplying factor for resistivity between air-mucus
+factorRij    = multiplying factor for resistivity between two subsystems which does not relate to mass transport (i.e., interstitial tissue-artery, interstitial tissue-vein, mucus-interstitial tissue)
+factorFric   = multiplying factor for the friction of the air in a turbinate 
+heatTranCoef = constant heat transfer coefficient regardless of nose geometry 
+factor_rit   = multiplying factor for volume ratio of interstitial tissue; factor_rit * interstitial tissue/(interstitial tissue + artery + vein)
+factor_rtot  = multiplying factor total volume of (interstitial tissue + artery + vein)
+rTide        = multiplying factor for tidal volume
+rFreq        = multiplying factor for respiration frequency
+velLim       = the minima of air velocity, which avoids Reynolds number diverging to infinity
 ```
 
 

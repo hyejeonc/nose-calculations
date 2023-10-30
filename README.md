@@ -126,10 +126,10 @@ k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus
 
 ## Troubleshooting
 1. The solution does not converge.
-   / [ ] Increase Ns and/or Ns_art in k = Parameters_animals()
-   / [ ] Check residuals of several variables in Nose struct, and increase N_cycle in `k = Parameters_animals()`
+   - [ ] Increase Ns and/or Ns_art in k = Parameters_animals()
+   - [ ] Check residuals of several variables in Nose struct, and increase N_cycle in `k = Parameters_animals()`
 2. Message from Matlab 'To run this file, you can either change the MATLAB current folder or add its folder to the MATLAB path'.
-   / [ ] Be sure that the directory for 'Nose_t.m' is with 'AIR_IG' and 'Water_EoS' folders. 
+   - [ ] Be sure that the directory for 'Nose_t.m' is with 'AIR_IG' and 'Water_EoS' folders. 
 
 
 ## Citation 

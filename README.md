@@ -54,7 +54,7 @@ k.fileName = ['saveName','.mat'];
 
 ## Details of the main code - 'Nose_t.m'
 ```matlab
-function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
+k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
 % Important parameters are tempCond, noseGeom.
 % tempCond = the ambient air temperature [degree Celsius], for example, -30.
 % noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
@@ -62,7 +62,7 @@ function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt
 
 
 ## Data saved in the output file 
-The output file '***.mat' consists of a struct named 'Nose' and this has the following information. 
+The output file 'saveName.mat' consists of a struct named 'Nose' and this has the following information. 
 All is saved as [number of iteration * 2 * Nt, Ns] array. 
 For example, the solution (in the last iteration) of the temperature of the air subsystem during inhalation is: Nose.Ta(end-2*Nt:end-Nt,:)
 For exhalation: Nose.Ta(end-Nt:,:)
@@ -99,6 +99,9 @@ For exhalation: Nose.Ta(end-Nt:,:)
         Nose.Jq_art = heat flux of interstitial tissue - artery subsystem
         Nose.Jq_ven = heat flux of interstitial tissue - vein subsystem
 ```
+## Change geometry of animal nose 
+
+
 
 ## Trouble shooting
 

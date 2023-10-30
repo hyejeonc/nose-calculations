@@ -133,6 +133,10 @@ k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus
 
 
 ## Citation 
+Add the following citations when you use this repo for scientific purposes. 
+
 [1] Magnanelli, Elisa, et al. "The nasal geometry of the reindeer gives energy-efficient respiration." Journal of Non-Equilibrium Thermodynamics 42.1 (2017): 59-78.
+
 [2] Solberg, Simon Birger Byremo, et al. "Energy efficiency of respiration in mature and newborn reindeer." Journal of Comparative Physiology B 190.4 (2020): 509-520.
+
 [3] Cheon, Hyejeong Lee, et al. "Structure-function relationships in the nasal cavity of Arctic and subtropical seals." Biophysical Journal (2023): XXX-XXX.

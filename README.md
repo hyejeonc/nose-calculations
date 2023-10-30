@@ -6,11 +6,11 @@ This repository is about a numerical calculation code package to study hydrodyna
 
 
 1. git clone https://github.com/hyejeonc/nose-calculations.git
-2. Open 'Nose_t.m' file in Matlab.
-3. Modify 'Nose_t.m' file, i.e., changing the ambient air temperature, you should modify `k = Parameters_animals(.. , .. , .. , .. , ... )`
+2. open 'Nose_t.m' file in Matlab.
+3. modify 'Nose_t.m' file, i.e., changing the ambient air temperature, you should modify `k = Parameters_animals(.. , .. , .. , .. , ... )`
    
 ```matlab
-function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
+k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
 % Important parameters are tempCond, noseGeom.
 % tempCond = the ambient air temperature [degree Celsius], for example, -30.
 % noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
@@ -32,7 +32,7 @@ elseif tempCond == -30
 ```
 
 To add geometrical information, you should add a length, cross-sectional area and perimeter information here: 
-please add another elseif paragraph to avoid a confusion. 
+add another elseif paragraph to avoid a confusion. 
 
 ```matlab
 elseif noseGeom == 2 % 2: arctic
@@ -47,8 +47,8 @@ elseif noseGeom == 2 % 2: arctic
 k.fileName = ['saveName','.mat'];
 ```
 
-6. Run 'Nose_t.m'.
-7. The output file 'saveName.mat' file is save in the same directory of 'Nose_t.m'.
+6. Run 'Nose_t.m' in Matlab.
+7. The output file 'saveName.mat' file is saved automatically after one iteration in the same directory of 'Nose_t.m'.
 
 
 
@@ -62,45 +62,42 @@ function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt
 
 
 ## Data saved in the output file 
-The output file '***.mat' is consisted of a struct named Nose, and this have the following information. 
+The output file '***.mat' consists of a struct named Nose, and this has the following information. 
 ```matlab
-       self.Ta = np.array(Nose['Ta'])
-        self.Tw = np.array(Nose['Tw'])
-        self.Tit = np.array(Nose['Tm'])
-        self.Tm = np.array(Nose['Tm'])
-        self.Tven = np.array(Nose['Tven'])
-        self.wa = np.array(Nose['wa'])
-        self.x_a = np.array(Nose['x_a'])
-        self.Tart_art = np.array(Nose['Tart_art'])
-        self.Tart = np.array(Nose['Tart'])
-        self.M_tot = np.array(Nose['M_tot'])
-
-        self.rho = np.array(Nose['rho'])
-        self.rho_vap = np.array(Nose['rho_vap'])
-
-        self.rho_dry = np.array(Nose['rho_dry'])
-        self.va = np.array(Nose['va'])
-        self.F_vap = np.array(Nose['F_vap'])
-        self.Fa = np.array(Nose['Fa'])
-        self.vart = np.array(Nose['vart'])
-        self.vven = np.array(Nose['vven'])
-        self.R_aw = np.array(Nose['R_aw'])
-        self.R_wm = np.array(Nose['R_wm'])
-        self.R_art = np.array(Nose['R_art'])
-        self.R_ven = np.array(Nose['R_ven'])
-        self.R_mu = np.array(Nose['R_mu'])
-        self.R_qmu = np.array(Nose['R_qmu'])
-        self.h_a = np.array(Nose['h_a'])
-        self.h_wa = np.array(Nose['h_wa'])
-        self.h_w = np.array(Nose['h_w'])
-        self.X_T = np.array(Nose['X_T'])
-        self.X_mu = np.array(Nose['X_mu'])
-        self.Jw = np.array(Nose['Jw'])
-        self.Jq_a = np.array(Nose['Jq_a'])
-        self.Jq_w = np.array(Nose['Jq_w'])
-        self.Jq_art = np.array(Nose['Jq_art'])
-        self.Jq_ven = np.array(Nose['Jq_ven'])
-        self.sigma = np.array(Nose['sigma'])
+        Nose.Ta = array, temperature of air subsystem.
+        Nose.Tw = np.array(Nose['Tw'])
+        Nose.Tit = np.array(Nose['Tm'])
+        Nose.Tm = np.array(Nose['Tm'])
+        Nose.Tven = np.array(Nose['Tven'])
+        Nose.wa = np.array(Nose['wa'])
+        Nose.x_a = np.array(Nose['x_a'])
+        Nose.Tart_art = np.array(Nose['Tart_art'])
+        Nose.Tart = np.array(Nose['Tart'])
+        Nose.M_tot = np.array(Nose['M_tot'])
+        Nose.rho = np.array(Nose['rho'])
+        Nose.rho_vap = np.array(Nose['rho_vap'])
+        Nose.rho_dry = np.array(Nose['rho_dry'])
+        Nose.va = np.array(Nose['va'])
+        Nose.F_vap = np.array(Nose['F_vap'])
+        Nose.Fa = np.array(Nose['Fa'])
+        Nose.vart = np.array(Nose['vart'])
+        Nose.vven = np.array(Nose['vven'])
+        Nose.R_aw = np.array(Nose['R_aw'])
+        Nose.R_wm = np.array(Nose['R_wm'])
+        Nose.R_art = np.array(Nose['R_art'])
+        Nose.R_ven = np.array(Nose['R_ven'])
+        Nose.R_mu = np.array(Nose['R_mu'])
+        Nose.R_qmu = np.array(Nose['R_qmu'])
+        Nose.h_a = np.array(Nose['h_a'])
+        Nose.h_wa = np.array(Nose['h_wa'])
+        Nose.h_w = np.array(Nose['h_w'])
+        Nose.X_T = np.array(Nose['X_T'])
+        Nose.X_mu = np.array(Nose['X_mu'])
+        Nose.Jw = np.array(Nose['Jw'])
+        Nose.Jq_a = np.array(Nose['Jq_a'])
+        Nose.Jq_w = np.array(Nose['Jq_w'])
+        Nose.Jq_art = np.array(Nose['Jq_art'])
+        Nose.Jq_ven = np.array(Nose['Jq_ven'])
 ```
 
 

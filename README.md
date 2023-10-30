@@ -51,7 +51,6 @@ k.fileName = ['saveName','.mat'];
 7. The output file 'saveName.mat' file is saved automatically after one iteration in the same directory of 'Nose_t.m'.
 
 
-
 ## Details of the main code - 'Nose_t.m'
 ```matlab
 k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
@@ -60,52 +59,73 @@ k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus
 % noseGeom = selection of nose geometry regarding each animal. Selected nose geometry should be added in 'Parameters_animals.m'.
 ```
 
-
 ## Data saved in the output file 
 The output file 'saveName.mat' consists of a struct named 'Nose' and this has the following information. 
+
 All is saved as [number of iteration * 2 * Nt, Ns] array. 
+
 For example, the solution (in the last iteration) of the temperature of the air subsystem during inhalation is: Nose.Ta(end-2*Nt:end-Nt,:)
+
 For exhalation: Nose.Ta(end-Nt:,:)
 
 ```matlab
-        Nose.Ta = temperature of air subsystem.
-        Nose.Tw = temperature of mucus subsystem.
-        Nose.Tit = temperature of interstitial tissue subsystem.
-        Nose.Tven = temperature of vein subsystem.
-        Nose.wa = water mass fraction in air subsystem.
-        Nose.x_a =  water mol fraction in air subsystem.
-        Nose.Tart = temperature of artery subsystem.
-        Nose.M_tot = total mass of air 
-        Nose.rho = density of air 
+        Nose.Ta      = temperature of air subsystem.
+        Nose.Tw      = temperature of mucus subsystem.
+        Nose.Tit     = temperature of interstitial tissue subsystem.
+        Nose.Tven    = temperature of vein subsystem.
+        Nose.wa      = water mass fraction in air subsystem.
+        Nose.x_a     = water mol fraction in air subsystem.
+        Nose.Tart    = temperature of artery subsystem.
+        Nose.M_tot   = total mass of air 
+        Nose.rho     = density of air 
         Nose.rho_vap = density of water vapour in the air
         Nose.rho_dry = density of dry air (density after excluding water vapour)
-        Nose.va = flow velocity of air
-        Nose.F_vap = mass flow rate of dry air
-        Nose.Fa = mass flow rate of air 
-        Nose.R_aw = interface resistivity air-mucus (heat, Rqq)
-        Nose.R_wm = interface resistivity mucus-interstitial tissue (heat)
-        Nose.R_art = interface resistivity interstitial tissue-artery (heat)
-        Nose.R_ven = interface resistivity interstitial tissue-vein (heat)
-        Nose.R_mu = interface resistivity of water mass air-mucus (mass)
-        Nose.R_qmu = coupling coefficient (heat-mass)
-        Nose.h_a = enthalpy of air 
-        Nose.h_wa = enthalpy of water vapour
-        Nose.h_w = enthalpy of liquid water
-        Nose.X_T = driving force of heat transport (difference between reciprocal of temperature)
-        Nose.X_mu = driving force of mass transport (chemical potential difference)
-        Nose.Jw = water mass flux air-mucus subsystem 
-        Nose.Jq_a = heat flux of air-mucus subsystem
-        Nose.Jq_w = heat flux of mucus-interstitial tissue subsystem
-        Nose.Jq_art = heat flux of interstitial tissue - artery subsystem
-        Nose.Jq_ven = heat flux of interstitial tissue - vein subsystem
+        Nose.va      = flow velocity of air
+        Nose.F_vap   = mass flow rate of dry air
+        Nose.Fa      = mass flow rate of air 
+        Nose.R_aw    = interface resistivity air-mucus (heat, Rqq)
+        Nose.R_wm    = interface resistivity mucus-interstitial tissue (heat)
+        Nose.R_art   = interface resistivity interstitial tissue-artery (heat)
+        Nose.R_ven   = interface resistivity interstitial tissue-vein (heat)
+        Nose.R_mu    = interface resistivity of water mass air-mucus (mass)
+        Nose.R_qmu   = coupling coefficient (heat-mass)
+        Nose.h_a     = enthalpy of air 
+        Nose.h_wa    = enthalpy of water vapour
+        Nose.h_w     = enthalpy of liquid water
+        Nose.X_T     = driving force of heat transport (difference between reciprocal of temperature)
+        Nose.X_mu    = driving force of mass transport (chemical potential difference)
+        Nose.Jw      = water mass flux air-mucus subsystem 
+        Nose.Jq_a    = heat flux of air-mucus subsystem
+        Nose.Jq_w    = heat flux of mucus-interstitial tissue subsystem
+        Nose.Jq_art  = heat flux of interstitial tissue - artery subsystem
+        Nose.Jq_ven  = heat flux of interstitial tissue - vein subsystem
 ```
-## Change geometry of animal nose 
+
+## Change simulation settings
+Most of simulation settings can be changed from `k = Parameters_animals(.. , .. , .. , .. , ... )` and 'Parameters_animals.m'.
+
+```matlab
+k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
+% Ns           = discretization number in space 
+% Ns_art       = discretization number in space for artery only
+% N_cycle      = maximum number of cycle
+% r_shunt      = segmentize nose length 
+% d_mucus      = thickness of mucus lining [um]
+% factorRam    = multiplying factor for resistivity between air-mucus
+% factorRij    = multiplying factor for resistivity between two subsystems which does not relate to mass transport (i.e., interstitial tissue-artery, interstitial tissue-vein, mucus-interstitial tissue)
+% factorFric   = multiplying factor for the friction of the air in a turbinate 
+% heatTranCoef = 
+% factor_rit   = multiplying factor for volume ratio of interstitial tissue; factor_rit * interstitial tissue/(interstitial tissue + artery + vein)
+% factor_rtot  = multiplying factor total volume of (interstitial tissue + artery + vein)
+% rTide        = multiplying factor for tidal volume
+% rFreq        = multiplying factor for respiration frequency 
+% velLim       = 
+```
 
 
-
-## Trouble shooting
-
+## Troubleshooting
 
 
+## Citation 
 #### Parameters.m
 ## To change 'default' physical and thermodynamic parameters, you should change it, i.e., heat capacity of mucus lining. 

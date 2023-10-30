@@ -143,3 +143,7 @@ Add the following citations when you use this repo for scientific purposes.
 [2] Solberg, Simon Birger Byremo, et al. "Energy efficiency of respiration in mature and newborn reindeer." Journal of Comparative Physiology B 190.4 (2020): 509-520.
 
 [3] Cheon, Hyejeong Lee, et al. "Structure-function relationships in the nasal cavity of Arctic and subtropical seals." Biophysical Journal (2023): XXX-XXX.
+
+
+## Questions?
+If you have any questions or suggestions, please send email to: hyejeong.l.cheon@gmail.com!

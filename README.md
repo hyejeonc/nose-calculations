@@ -101,6 +101,7 @@ For exhalation: Nose.Ta(end-Nt:,:)
         Nose.Jq_ven  = heat flux of interstitial tissue - vein subsystem
 ```
 
+
 ## Change simulation settings
 Most of simulation settings can be changed from `k = Parameters_animals(.. , .. , .. , .. , ... )` and 'Parameters_animals.m'.
 
@@ -109,23 +110,29 @@ k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus
 % Ns           = discretization number in space 
 % Ns_art       = discretization number in space for artery only
 % N_cycle      = maximum number of cycle
-% r_shunt      = segmentize nose length 
-% d_mucus      = thickness of mucus lining [um]
+% r_shunt      = a fraction to segmentize nose length. default = 0.5. This means you segmentize the nose length where the volume ratio between maxilloturbinate and total air pathway in a nose (maxilloturbinate+olfactory path) is 0.5.
+% d_mucus      = thickness of mucus lining [m]
 % factorRam    = multiplying factor for resistivity between air-mucus
 % factorRij    = multiplying factor for resistivity between two subsystems which does not relate to mass transport (i.e., interstitial tissue-artery, interstitial tissue-vein, mucus-interstitial tissue)
 % factorFric   = multiplying factor for the friction of the air in a turbinate 
-% heatTranCoef = 
+% heatTranCoef = constant heat transfer coefficient regardless of nose geometry 
 % factor_rit   = multiplying factor for volume ratio of interstitial tissue; factor_rit * interstitial tissue/(interstitial tissue + artery + vein)
 % factor_rtot  = multiplying factor total volume of (interstitial tissue + artery + vein)
 % rTide        = multiplying factor for tidal volume
-% rFreq        = multiplying factor for respiration frequency 
-% velLim       = 
+% rFreq        = multiplying factor for respiration frequency
+% velLim       = the minima of air velocity, which avoids Reynolds number diverging to infinity
 ```
 
 
 ## Troubleshooting
+1. The solution does not converge.
+   / [ ] Increase Ns and/or Ns_art in k = Parameters_animals()
+   / [ ] Check residuals of several variables in Nose struct, and increase N_cycle in `k = Parameters_animals()`
+2. Message from Matlab 'To run this file, you can either change the MATLAB current folder or add its folder to the MATLAB path'.
+   / [ ] Be sure that the directory for 'Nose_t.m' is with 'AIR_IG' and 'Water_EoS' folders. 
 
 
 ## Citation 
-#### Parameters.m
-## To change 'default' physical and thermodynamic parameters, you should change it, i.e., heat capacity of mucus lining. 
+[1] Magnanelli, Elisa, et al. "The nasal geometry of the reindeer gives energy-efficient respiration." Journal of Non-Equilibrium Thermodynamics 42.1 (2017): 59-78.
+[2] Solberg, Simon Birger Byremo, et al. "Energy efficiency of respiration in mature and newborn reindeer." Journal of Comparative Physiology B 190.4 (2020): 509-520.
+[3] Cheon, Hyejeong Lee, et al. "Structure-function relationships in the nasal cavity of Arctic and subtropical seals." Biophysical Journal (2023): XXX-XXX.

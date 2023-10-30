@@ -72,34 +72,33 @@ For exhalation: Nose.Ta(end-Nt:,:)
         Nose.Tw = temperature of mucus subsystem.
         Nose.Tit = temperature of interstitial tissue subsystem.
         Nose.Tven = temperature of vein subsystem.
-        Nose.wa = water mass fraction in the air subsystem.
-        Nose.x_a =  water mol fraction in the air subsystem.
+        Nose.wa = water mass fraction in air subsystem.
+        Nose.x_a =  water mol fraction in air subsystem.
         Nose.Tart = temperature of artery subsystem.
-        Nose.M_tot = total mass of the air 
-        Nose.rho = density of the air 
-        Nose.rho_vap = density of the water vapour in the air
-        Nose.rho_dry = density of the dry air (density after excluding water vapour)
-        Nose.va = 
-        Nose.F_vap = flow rate of dry air
-        Nose.Fa = flow rate of air 
-        Nose.R_aw = np.array(Nose['R_aw'])
-        Nose.R_wm = np.array(Nose['R_wm'])
-        Nose.R_art = np.array(Nose['R_art'])
-        Nose.R_ven = np.array(Nose['R_ven'])
-        Nose.R_mu = np.array(Nose['R_mu'])
-        Nose.R_qmu = np.array(Nose['R_qmu'])
-        Nose.h_a = np.array(Nose['h_a'])
-        Nose.h_wa = np.array(Nose['h_wa'])
-        Nose.h_w = np.array(Nose['h_w'])
-        Nose.X_T = np.array(Nose['X_T'])
-        Nose.X_mu = np.array(Nose['X_mu'])
+        Nose.M_tot = total mass of air 
+        Nose.rho = density of air 
+        Nose.rho_vap = density of water vapour in the air
+        Nose.rho_dry = density of dry air (density after excluding water vapour)
+        Nose.va = flow velocity of air
+        Nose.F_vap = mass flow rate of dry air
+        Nose.Fa = mass flow rate of air 
+        Nose.R_aw = interface resistivity air-mucus (heat, Rqq)
+        Nose.R_wm = interface resistivity mucus-interstitial tissue (heat)
+        Nose.R_art = interface resistivity interstitial tissue-artery (heat)
+        Nose.R_ven = interface resistivity interstitial tissue-vein (heat)
+        Nose.R_mu = interface resistivity of water mass air-mucus (mass)
+        Nose.R_qmu = coupling coefficient (heat-mass)
+        Nose.h_a = enthalpy of air 
+        Nose.h_wa = enthalpy of water vapour
+        Nose.h_w = enthalpy of liquid water
+        Nose.X_T = driving force of heat transport (difference between reciprocal of temperature)
+        Nose.X_mu = driving force of mass transport (chemical potential difference)
         Nose.Jw = water mass flux air-mucus subsystem 
         Nose.Jq_a = heat flux of air-mucus subsystem
         Nose.Jq_w = heat flux of mucus-interstitial tissue subsystem
         Nose.Jq_art = heat flux of interstitial tissue - artery subsystem
         Nose.Jq_ven = heat flux of interstitial tissue - vein subsystem
 ```
-
 
 ## Trouble shooting
 

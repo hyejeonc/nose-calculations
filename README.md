@@ -17,8 +17,11 @@ noseGeom = selection of nose geometry regarding each animal. Selected nose geome
 ```
 
 4. Depending on the parameters for each animal, modify 'Parameters_animals.m' file.
+   
    To add an additional ambient temperature condition, add elseif paragraph here:
-   k.xa = water mass fraction 
+   
+   k.xa = water mass fraction
+   
     which refers from the saturate water vapour in the air from https://www.engineeringtoolbox.com/moist-air-properties-d_1256.html
     You can modify relative humidity by changing the multiplying factor, 0.9 (RH = 90 %). 
 

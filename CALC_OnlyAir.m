@@ -1,5 +1,6 @@
 function Sol = CALC_OnlyAir
-% r0 = r1 : correct dAvendz, dTvendz
+    
+% r11 was with stopping criterion = 1e-6, not 1e-5
 
 global k ktp1 ktp2
 
@@ -8,6 +9,8 @@ k = ScalesParameters(k);
 wa      = k.wa;
 wb      = k.wb;
 
+figCnt = 1;
+loopList = [6 13 18];
 if k.initCond == 0
     % Initial conditions
     disp("Initialize temperature and iteration starts! ")
@@ -91,7 +94,7 @@ for i = 1 : k.N_cycle
     dAadz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_a  , 1);
     dAwdz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_w  , 1);
     dAmdz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_m  , 1);
-    dAartdz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_art  , 1);
+    dAartdz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_art  , 1); % was +1
     dAvendz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_ven  , 1);
     
     cos_a    = 1.*cos(atan(dAadz));
@@ -363,24 +366,57 @@ for i = 1 : k.N_cycle
            
        end
    
-   end
+    end
     
     
     
     
     
-        % Initial conditions
-        T0a     = (Sol.Ta(end,:))./k.Scales.T;
-        T0w     = (Sol.Tw(end,:))./k.Scales.T;
-        T0m     = (Sol.Tm(end,:))./k.Scales.T;
-        T0art   = (Sol.Tart_art(end,:))./k.Scales.T;
-        T0ven   = (Sol.Tven(end,:))./k.Scales.T;
-        w0a     = (Sol.wa(end,:));
-       y0  = [ T0a T0w T0m  T0ven w0a T0art];
-       
-       Nose = Sol;
-       save(k.fileName, 'Nose');
-       %save RD_Ns36_36_veindssrev_1000c_m30.mat Sol
-       %save RD_Ns24_24_veindssrev_1000c_m30.mat Sol
-       %save SA_shunt_Ns24_24_veindssrev_1000c_m30.mat Sol
+    % Initial conditions
+    T0a     = (Sol.Ta(end,:))./k.Scales.T;
+    T0w     = (Sol.Tw(end,:))./k.Scales.T;
+    T0m     = (Sol.Tm(end,:))./k.Scales.T;
+    T0art   = (Sol.Tart_art(end,:))./k.Scales.T;
+    T0ven   = (Sol.Tven(end,:))./k.Scales.T;
+    w0a     = (Sol.wa(end,:));
+   y0  = [ T0a T0w T0m  T0ven w0a T0art];
+
+   Nose = Sol;
+   save(k.fileName, 'Nose');
+   %save RD_Ns36_36_veindssrev_1000c_m30.mat Sol
+   %save RD_Ns24_24_veindssrev_1000c_m30.mat Sol
+   %save SA_shunt_Ns24_24_veindssrev_1000c_m30.mat Sol
+
+
+
+   %figure(1);axes('FontSize',10,'FontName','Arial');hold on;box on;
+   %plot(k.zz,smooth(Ref_Case.wa(end-2*k.Nt+k.Nt/2+1,:)),'--k', 'LineWidth',1);hold on;
+   %plot(k.zz,smooth(Nose.wa(end-2*k.Nt+k.Nt/2+1,:)),'-k', 'LineWidth',1);
+   %xlabel('z  /  m');
+   %ylabel('w_a  /  -');
+   % ylim([0 0.1]);
+   %xlim([0 k.L]);
+   %set(gcf,'PaperPositionMode','manual')
+   %set(gcf,'PaperUnits','centimeters')
+   %set(gcf,'Paperposition',[1.5000    0.7500    9.7500    7.8750])
+   %set(gca,'Fontsize',10)
+
+    
+%    for kIndex = 1:3
+%         kk = loopList(kIndex);
+%         
+%        figure(figCnt)
+%        %plot(k.zz, Sol.Ta(2*n*k.Nt+1:2*n*k.Nt+k.Nt,:), '')
+%        plot(k.zz,   Sol.Ta(2*n*k.Nt+kk,:) ,'LineWidth',1);hold on;
+%        plot(k.zz,   Sol.Tw(2*n*k.Nt+kk,:) ,'LineWidth',1);hold on;
+%        plot(k.zz,   Sol.Tm(2*n*k.Nt+kk,:) ,'LineWidth',1);hold on;
+%        plot(k.zz, Sol.Tart(2*n*k.Nt+kk,:) ,'LineWidth',1);hold on;
+%        plot(k.zz, Sol.Tven(2*n*k.Nt+kk,:) ,'LineWidth',1);
+%        ylim([300 312]);
+%        xlim([0 k.L]);
+%        legend({['air, t=' num2str(loopList(kIndex))], 'mucus', 'interstitial tissue', 'artery', 'vein'},'Location','southeast')
+%         figCnt = figCnt+1;
+%    end
+   
+ 
 end

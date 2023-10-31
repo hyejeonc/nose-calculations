@@ -34,8 +34,8 @@ ktp2 = TP_Init(Comp2,k.EoS);
 %%%%%%%%%%%%%%%%%%%%%%%%
 %% Simulation starts! %%
 %%%%%%%%%%%%%%%%%%%%%%%%
-%function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq)
-k = Parameters_animals(-30, 2, 24, 24, 4000, 0.5, 10e-6, 1, 1, 1, -2, 1.0, 1.0, 1.0, 1);
+%function k = Parameters_animals(tempCond, noseGeom, Ns, Ns_art, N_cycle, r_shunt, d_mucus, factorRam, factorRij, factorFric, heatTranCoef, factor_rit, factor_rtot, rTide, rFreq, velLim)
+k = Parameters_animals(-30, 2, 24, 24, 4000, 0.5, 10e-6, 1, 1, 1, -2, 1.0, 1.0, 1.0, 1, 15);
 %k.tempCond = 0; 
 %k.noseGeom = 1;  % 0: reindeer, 1: subtropical, 2: arctic, 3: subtropical+shunt, 4: arctic+shunt 5: subtropical from huntley
 % 6: A1 peri  7: A2 peri  8: A3 area+peri 

@@ -1,5 +1,4 @@
 function der=DIFF_OnlyAir2(t,y)
-# r01 : correct dAvendz, dTvendz
 
 global k ktp1 ktp2
 y=y';
@@ -79,7 +78,7 @@ dAadz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_a  , 1);
 dAmdz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_m  , 1);
 dAitdz   = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_it  , 1);
 dAartdz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns_art,A_art  , 1);
-dAvendz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_ven  , 1); % *** was +1
+dAvendz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_ven  , -1); % was +1
 
 cos_a    = 1.*cos(atan(dAadz));
 cos_m    = 1.*cos(atan(dAmdz));
@@ -102,7 +101,7 @@ F_vap    = A_a.*v.*rho_vap;
 % Temperature derivatives
 dTadz   = dss020(k.zz(1),k.zz(k.Ns),k.Ns,Ta  , 1);
 dTartdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns_art,Tart,1);
-dTvendz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,Tven,-1); %*** was +1 
+dTvendz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,Tven,-1);
 dFvapdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,F_vap,1);
 dwvapdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,w_vap,1);
 dw2dz   = -0.79.*ktp1.Mw(2)./M_dry.*dwvapdz;
@@ -147,7 +146,7 @@ dTmdt   = ( cos_m.*gamma_a .*(Jq_a- Jq_w+ Jw.*(h_i(1,:)-h_w(1,:)))./(k.rho_w.*c_
 dTitdt  = ((gamma_a  .*Jq_w -gamma_art_int.*Jq_art-gamma_ven.*Jq_ven).*cos_it./(k.rho_b.*k.c_b.*A_it))./k.Scales.T*k.Scales.t;
 dTartdt = (-k.F_b./(A_art.*k.rho_b).*dTartdz + cos_art.*gamma_art.*Jq_art_a./(A_art.*k.rho_b.*k.c_b))./k.Scales.T*k.Scales.t;
 dTvendt = (+k.F_b./(A_ven.*k.rho_b).*dTvendz + cos_ven.*gamma_ven.*Jq_ven./(A_ven.*k.rho_b.*k.c_b))./k.Scales.T*k.Scales.t;
-
+% was - and + for dTartdt and dTvendt 
 dwvapdt   = dwvapdt.*k.Scales.t;
 w_ref     = k.wb;
 % Boundary conditions in z = 0

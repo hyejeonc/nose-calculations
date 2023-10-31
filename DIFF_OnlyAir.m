@@ -1,6 +1,5 @@
 function der=DIFF_OnlyAir(t,y)
-% r0 = r1 : correct dAvendz, dTvendz
- 
+
 global k ktp1 ktp2
 y=y';
 t    = t.*k.Scales.t;
@@ -76,7 +75,7 @@ A_ven_a  = pchip(k.x_ven,k.Area_ven,k.zz_art);
 dAadz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_a  , 1);
 dAmdz    = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_m  , 1);
 dAitdz   = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_it  , 1);
-dAartdz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns_art,A_art  , 1);
+dAartdz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns_art,A_art  , -1); % WAS +1
 dAvendz  = dss020(k.zz(1),k.zz(k.Ns),k.Ns,A_ven  , 1);
 
 cos_a    = 1.*cos(atan(dAadz));
@@ -99,7 +98,7 @@ F_vap    = A_a.*v.*rho_vap;
 
 % Temperature derivatives
 dTadz   = dss020(k.zz(1),k.zz(k.Ns),k.Ns,Ta  , 1);
-dTartdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns_art,Tart,-1);
+dTartdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns_art,Tart,-1); % was +1
 dTvendz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,Tven,1);
 dFvapdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,F_vap,1);
 dwvapdz = dss020(k.zz(1),k.zz(k.Ns),k.Ns,w_vap,1);
@@ -109,9 +108,18 @@ dwadz   = [dwvapdz; dw2dz; dw3dz];
 
 Tart_int = pchip(k.zz_art, Tart, k.zz);
 Tit_art = pchip(k.zz, Tit, k.zz_art);
+
+%disp('====================')
+%disp('====================')
+%disp('v_a is == ')
+%disp(v(ii))
+%disp('====================')
+%disp('====================')
 % Fluxes between subsystems
 for ii = 1:k.Ns
     R_am        = CALC_R_a_m(Ta(ii),xa(:,ii),Tm(ii),D_a(ii),v(ii));
+    
+    
     X           = [1./Tm(ii)-1./Ta(ii);
                  -(mu_m(ii)./Tm(ii)-mu_a(ii)./Ta(ii))+h_a(1,ii).*(1./Tm(ii)-1./Ta(ii))];
 %     Jq_a(1,ii) = (X(1))/R_am(1,1);
@@ -145,9 +153,9 @@ dTadt   = (-v.*dTadz - gamma_a./(A_a.*rho_a.*c_a).*cos_a.*(Jq_a-Jw.*(h_tot-h_i(1
 % dTmdt   = ( gamma_a .*(Jq_a- Jq_w+ Jw.*(0))./(k.rho_w.*c_w.*A_m)                               )./k.Scales.T*k.Scales.t;
 dTmdt   = ( gamma_a .*cos_m.*(Jq_a- Jq_w+ Jw.*(h_i(1,:)-h_w(1,:)))./(k.rho_w.*c_w.*A_m)                               )./k.Scales.T*k.Scales.t;
 dTitdt  = ((gamma_a .*Jq_w -gamma_art_int.*Jq_art-gamma_ven.*Jq_ven).*cos_it./(k.rho_b.*k.c_b.*A_it))./k.Scales.T*k.Scales.t;
-dTartdt = ( k.F_b./(A_art.*k.rho_b).*dTartdz + cos_art.*gamma_art.*Jq_art_a./(A_art.*k.rho_b.*k.c_b))./k.Scales.T*k.Scales.t; # *** was +1
-dTvendt = (-k.F_b./(A_ven.*k.rho_b).*dTvendz + cos_ven.*gamma_ven.*Jq_ven./(A_ven.*k.rho_b.*k.c_b))./k.Scales.T*k.Scales.t; # *** was -1
-
+dTartdt = (+k.F_b./(A_art.*k.rho_b).*dTartdz + cos_art.*gamma_art.*Jq_art_a./(A_art.*k.rho_b.*k.c_b))./k.Scales.T*k.Scales.t; % *** was +1
+dTvendt = (-k.F_b./(A_ven.*k.rho_b).*dTvendz + cos_ven.*gamma_ven.*Jq_ven./(A_ven.*k.rho_b.*k.c_b))./k.Scales.T*k.Scales.t; % *** was -1
+% was + and - for dTartdt and dTvendt 
 dwvapdt   = dwvapdt.*k.Scales.t;
 w_ref     = k.wa;
 % Boundary conditions in z = 0
